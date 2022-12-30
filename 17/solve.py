@@ -1,15 +1,6 @@
 from abc import ABC, abstractclassmethod
 from pprint import pprint as print
 
-with open("17/input.txt", encoding="utf-8") as f:
-    state = {
-        "jet_pattern": f.read().strip(),
-        "jet_index": 0,
-        "cave": ["|.......|", "|.......|", "|.......|", "+-------+"],
-    }
-    state["jet_length"] = len(state["jet_pattern"])
-
-
 class State:
     def __init__(self, filepath):
         with open(filepath, encoding="utf-8") as f:
