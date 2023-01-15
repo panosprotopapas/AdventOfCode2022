@@ -1,12 +1,5 @@
 from time import time
 
-with open("20/input.txt", encoding="utf-8") as f:
-    message_part_1 = [int(l.strip()) for l in f.readlines()]
-
-with open("20/input.txt", encoding="utf-8") as f:
-    message_part_2 = [(int(l.strip()) * 811589153) for l in f.readlines()]
-
-
 class Coord:
     def __init__(self, value):
         self.value = value
@@ -17,7 +10,10 @@ class Coord:
         return f"Value: {self.value}\nLeft: {self.left.value}\nRight:{self.right.value}\n\n"
 
 
-def decrypt(message, rounds):
+def decrypt(rounds=1, multiplier=1):
+    with open("20/input.txt", encoding="utf-8") as f:
+        message = [(int(l.strip()) * multiplier) for l in f.readlines()]
+
     globe = [Coord(val) for val in message]
     globe_round = len(globe) - 1
 
@@ -65,6 +61,7 @@ def decrypt(message, rounds):
 
     return result
 
-
-print(f"Part 1: {decrypt(message=message_part_1, rounds=1)}")
-print(f"Part 2: {decrypt(message=message_part_2, rounds=10)}")
+start = time()
+print(f"Part 1: {decrypt()} | Time taken: {time()- start}")
+start = time()
+print(f"Part 2: {decrypt(rounds=10, multiplier=811589153)} | Time taken: {time() - start}")
